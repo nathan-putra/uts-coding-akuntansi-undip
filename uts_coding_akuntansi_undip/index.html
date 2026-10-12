@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BizFlow Ledger | Financial Operations & Accounting Control</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Kiri Enterprise (248px Width) -->
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <div class="brand-icon-box">BF</div>
+        <div class="brand-text-group">
+          <span class="brand-title">BizFlow</span>
+          <span class="brand-subtitle-badge">LEDGER</span>
+        </div>
+      </div>
+
+      <div class="sidebar-nav-container">
+        <span class="sidebar-section-label">WORKSPACE</span>
+        <nav class="sidebar-nav">
+          <button type="button" class="nav-item active" data-page="dashboard">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+            Dashboard
+          </button>
+          <button type="button" class="nav-item" data-page="voucher">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+            Entri Kas Keluar
+          </button>
+          <button type="button" class="nav-item" data-page="journal">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10M6 10h10"/></svg>
+            Buku Besar
+          </button>
+          <button type="button" class="nav-item" data-page="inventory">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+            Gudang & Stok
+          </button>
+          <button type="button" class="nav-item" data-page="audit">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Jejak Audit
+          </button>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        <div class="footer-user-avatar">BF</div>
+        <div class="footer-user-details">
+          <span class="footer-user-name">BizFlow Ledger v2.4</span>
+          <span class="footer-user-role">Staf Akuntan Utama</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Konten Utama Workspace -->
+    <main class="main-content">
+      <header class="top-bar">
+        <div class="breadcrumb-area">
+          <span>BizFlow Ledger</span>
+          <span>/</span>
+          <span class="active-crumb" id="topbar-current-page">Dashboard</span>
+        </div>
+      </header>
+
+      <div class="content-body">
+
+        <!-- =================================================================== -->
+        <!-- MODUL 0: DASHBOARD KEUANGAN & KEPATUHAN BISNIS -->
+        <!-- =================================================================== -->
+        <section id="page-dashboard" class="page-section active">
+          <!-- KPI Metric Grid (4 Cards) -->
+          <div class="kpi-grid-4">
+            <div class="kpi-stat-card accent-navy">
+              <span class="kpi-stat-label">Kas & Setara Kas (PSAK 2)</span>
+              <span class="kpi-stat-val tabular" id="dash-kpi-cash">Rp 142.500.000</span>
+              <span class="kpi-stat-desc">Aset lancar likuid perbankan & kas operasional</span>
+            </div>
+            <div class="kpi-stat-card accent-teal">
+              <span class="kpi-stat-label">Valuasi Persediaan</span>
+              <span class="kpi-stat-val tabular" id="dash-kpi-inventory">Rp 5.320.000</span>
+              <span class="kpi-stat-desc">Aset barang dagang sistem perpetual</span>
+            </div>
+            <div class="kpi-stat-card accent-amber">
+              <span class="kpi-stat-label">Total Beban Operasional</span>
+              <span class="kpi-stat-val tabular" id="dash-kpi-expense">Rp 28.600.000</span>
+              <span class="kpi-stat-desc">Akrual beban periode Oktober 2026</span>
+            </div>
+            <div class="kpi-stat-card accent-green">
+              <span class="kpi-stat-label">Integritas Transaksi</span>
+              <span class="kpi-stat-val tabular">100% Balanced</span>
+              <span class="kpi-stat-desc">Zero discrepancy gate & segel SHA-256</span>
+            </div>
+          </div>
+
+          <!-- 2-Column Overview -->
+          <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; margin-bottom: 20px;">
+            <!-- Bagan Akun Utama -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Bagan Akun Finansial (Chart of Accounts - 3NF)</h2>
+                <span class="badge badge-posted">Standar PSAK</span>
+              </div>
+              <div class="card-body" style="padding: 0;">
+                <table class="enterprise-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 18%;">Kode</th>
+                      <th style="width: 36%;">Nama Akun</th>
+                      <th style="width: 22%;">Klasifikasi</th>
+                      <th style="width: 24%; text-align: center;">Saldo Normal</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashboard-coa-tbody">
+                    <!-- Dimuat dinamis via app.js -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Distribusi Beban Operasional -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Distribusi Beban Operasional</h2>
+                <span class="badge badge-draft">Oktober 2026</span>
+              </div>
+              <div class="card-body" style="padding: 20px;">
+                <div class="progress-list">
+                  <div>
+                    <div class="progress-item-header">
+                      <span style="font-weight: 600; color: var(--deep-navy);">Gaji & Upah Karyawan</span>
+                      <span class="tabular" style="font-weight: 600; color: var(--primary-navy);">Rp 12.870.000 (45%)</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 45%;"></div></div>
+                  </div>
+                  <div>
+                    <div class="progress-item-header">
+                      <span style="font-weight: 600; color: var(--deep-navy);">Sewa Gedung Kantor</span>
+                      <span class="tabular" style="font-weight: 600; color: var(--primary-navy);">Rp 7.150.000 (25%)</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 25%;"></div></div>
+                  </div>
+                  <div>
+                    <div class="progress-item-header">
+                      <span style="font-weight: 600; color: var(--deep-navy);">Listrik, Air & Utilitas</span>
+                      <span class="tabular" style="font-weight: 600; color: var(--primary-navy);">Rp 4.290.000 (15%)</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 15%;"></div></div>
+                  </div>
+                  <div>
+                    <div class="progress-item-header">
+                      <span style="font-weight: 600; color: var(--deep-navy);">Perlengkapan Toko</span>
+                      <span class="tabular" style="font-weight: 600; color: var(--primary-navy);">Rp 4.290.000 (15%)</span>
+                    </div>
+                    <div class="progress-track"><div class="progress-fill" style="width: 15%;"></div></div>
+                  </div>
+                </div>
+
+                <div style="margin-top: 20px; padding: 12px; background-color: var(--neutral-bg); border-radius: 6px; border: 1px solid var(--border); font-size: 11px; color: var(--secondary-text); line-height: 1.5;">
+                  <strong>Pengendalian Anggaran:</strong> Seluruh beban terverifikasi melalui voucher kas keluar terotorisasi dengan pembebanan langsung ke Buku Besar.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Analisis Arus Kas & Likuiditas Finansial (Tren 6 Bulan) -->
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">Arus Kas & Likuiditas Finansial (Tren 6 Bulan)</h2>
+              </div>
+              <div style="display: flex; gap: 16px; align-items: center; font-size: 12px;">
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span style="width: 10px; height: 10px; background-color: var(--primary-navy); border-radius: 2px; display: inline-block;"></span>
+                  <span style="color: var(--secondary-text);">Penerimaan Kas</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                  <span style="width: 10px; height: 10px; background-color: #94A3B8; border-radius: 2px; display: inline-block;"></span>
+                  <span style="color: var(--secondary-text);">Pengeluaran Kas</span>
+                </div>
+                <span class="badge badge-posted">PSAK 2</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: center;">
+                <!-- Vector SVG Bar Chart -->
+                <div style="width: 100%; height: 200px;">
+                  <svg viewBox="0 0 540 180" style="width: 100%; height: 100%; overflow: visible;" preserveAspectRatio="xMidYMid meet">
+                    <!-- Grid Lines -->
+                    <line x1="40" y1="20" x2="520" y2="20" stroke="#F1F5F9" stroke-width="1"/>
+                    <line x1="40" y1="60" x2="520" y2="60" stroke="#F1F5F9" stroke-width="1"/>
+                    <line x1="40" y1="100" x2="520" y2="100" stroke="#F1F5F9" stroke-width="1"/>
+                    <line x1="40" y1="140" x2="520" y2="140" stroke="#E2E8F0" stroke-width="1.5"/>
+
+                    <!-- Y-Axis Labels -->
+                    <text x="32" y="24" font-size="10" fill="#94A3B8" text-anchor="end">60jt</text>
+                    <text x="32" y="64" font-size="10" fill="#94A3B8" text-anchor="end">40jt</text>
+                    <text x="32" y="104" font-size="10" fill="#94A3B8" text-anchor="end">20jt</text>
+                    <text x="32" y="144" font-size="10" fill="#94A3B8" text-anchor="end">0</text>
+
+                    <!-- Mei: In 45, Out 28 -->
+                    <rect x="65" y="50" width="22" height="90" rx="3" fill="#173B67"/>
+                    <rect x="91" y="84" width="22" height="56" rx="3" fill="#94A3B8"/>
+                    <text x="89" y="160" font-size="11" fill="#526174" text-anchor="middle" font-weight="500">Mei</text>
+
+                    <!-- Jun: In 52, Out 31 -->
+                    <rect x="145" y="36" width="22" height="104" rx="3" fill="#173B67"/>
+                    <rect x="171" y="78" width="22" height="62" rx="3" fill="#94A3B8"/>
+                    <text x="169" y="160" font-size="11" fill="#526174" text-anchor="middle" font-weight="500">Jun</text>
+
+                    <!-- Jul: In 49, Out 33 -->
+                    <rect x="225" y="42" width="22" height="98" rx="3" fill="#173B67"/>
+                    <rect x="251" y="74" width="22" height="66" rx="3" fill="#94A3B8"/>
+                    <text x="249" y="160" font-size="11" fill="#526174" text-anchor="middle" font-weight="500">Jul</text>
+
+                    <!-- Agu: In 58, Out 35 -->
+                    <rect x="305" y="24" width="22" height="116" rx="3" fill="#173B67"/>
+                    <rect x="331" y="70" width="22" height="70" rx="3" fill="#94A3B8"/>
+                    <text x="329" y="160" font-size="11" fill="#526174" text-anchor="middle" font-weight="500">Agu</text>
+
+                    <!-- Sep: In 54, Out 32 -->
+                    <rect x="385" y="32" width="22" height="108" rx="3" fill="#173B67"/>
+                    <rect x="411" y="76" width="22" height="64" rx="3" fill="#94A3B8"/>
+                    <text x="409" y="160" font-size="11" fill="#526174" text-anchor="middle" font-weight="500">Sep</text>
+
+                    <!-- Okt: In 62, Out 38 -->
+                    <rect x="465" y="16" width="22" height="124" rx="3" fill="#173B67"/>
+                    <rect x="491" y="64" width="22" height="76" rx="3" fill="#94A3B8"/>
+                    <text x="489" y="160" font-size="11" fill="#102A43" text-anchor="middle" font-weight="700">Okt</text>
+                  </svg>
+                </div>
+
+                <!-- Financial Health Summary Metrics -->
+                <div style="display: flex; flex-direction: column; gap: 12px; border-left: 1px solid var(--border); padding-left: 20px;">
+                  <div>
+                    <span style="font-size: 11px; text-transform: uppercase; color: var(--secondary-text); font-weight: 600; letter-spacing: 0.3px; display: block;">Surplus Kas Operasional (Okt)</span>
+                    <span class="tabular" style="font-size: 18px; font-weight: 700; color: var(--success);">+ Rp 24.500.000</span>
+                    <span style="font-size: 11px; color: var(--secondary-text); display: block;">Penerimaan Rp 62,5jt vs Pengeluaran Rp 38,0jt</span>
+                  </div>
+
+                  <div style="border-top: 1px dashed var(--border); padding-top: 10px;">
+                    <span style="font-size: 11px; text-transform: uppercase; color: var(--secondary-text); font-weight: 600; letter-spacing: 0.3px; display: block;">Rasio Lancar (Current Ratio)</span>
+                    <span class="tabular" style="font-size: 18px; font-weight: 700; color: var(--primary-navy);">3.42x</span>
+                    <span style="font-size: 11px; color: var(--secondary-text); display: block;">Likuiditas sangat kuat memenuhi kewajiban lancar</span>
+                  </div>
+
+                  <div style="border-top: 1px dashed var(--border); padding-top: 10px;">
+                    <span style="font-size: 11px; text-transform: uppercase; color: var(--secondary-text); font-weight: 600; letter-spacing: 0.3px; display: block;">Perputaran Piutang (DSO)</span>
+                    <span class="tabular" style="font-size: 18px; font-weight: 700; color: var(--deep-navy);">14 Hari</span>
+                    <span style="font-size: 11px; color: var(--secondary-text); display: block;">Efisiensi konversi kas rata-rata perputaran ritel</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- MODUL 1: ENTRI KAS KELUAR -->
+        <!-- =================================================================== -->
+        <section id="page-voucher" class="page-section">
+          <div class="voucher-workspace-grid">
+            <!-- Kolom Kiri: Form Input & Tabel Jurnal -->
+            <div>
+              <!-- Bagian A: Informasi Voucher -->
+              <div class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Informasi Voucher</h2>
+                  <span class="badge badge-draft" id="voucher-status-badge">DRAFT</span>
+                </div>
+                <div class="card-body">
+                  <div class="form-grid-3">
+                    <div class="form-group">
+                      <label class="form-label" for="ref-no">Nomor Voucher</label>
+                      <input type="text" id="ref-no" class="form-control" value="BKK-2026/10/003" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="trx-date">Tanggal Transaksi</label>
+                      <input type="date" id="trx-date" class="form-control" value="2026-10-19" required>
+                    </div>
+                    <div class="form-group">
+                      <label class="form-label" for="description">Deskripsi</label>
+                      <input type="text" id="description" class="form-control" value="Pembayaran Beban Gaji & Operasional Kantor" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Bagian B: Rincian Jurnal (Enterprise Dark-Header Table) -->
+              <div class="card">
+                <div class="card-header">
+                  <h2 class="card-title">Rincian Jurnal</h2>
+                  <button type="button" class="btn btn-secondary" id="btn-add-line" style="height: 30px; padding: 0 10px; font-size: 12px;">+ Tambah Baris</button>
+                </div>
+                <div class="card-body" style="padding: 0;">
+                  <table class="enterprise-table">
+                    <thead>
+                      <tr>
+                        <th style="width: 32%;">Bagan Akun</th>
+                        <th style="width: 28%;">Memo</th>
+                        <th style="width: 18%; text-align: right;">Debit (Rp)</th>
+                        <th style="width: 18%; text-align: right;">Kredit (Rp)</th>
+                        <th style="width: 4%; text-align: center;"></th>
+                      </tr>
+                    </thead>
+                    <tbody id="lines-tbody">
+                      <!-- Rendered via JS -->
+                    </tbody>
+                  </table>
+                  <div style="padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; background-color: #FAFBFC; border-top: 1px solid var(--border);">
+                    <span style="font-size: 12px; color: var(--secondary-text);">Minimal satu pasang akun Debit dan Kredit.</span>
+                    <button type="button" class="btn btn-secondary" id="btn-reset" style="height: 30px; padding: 0 10px; font-size: 12px;">Reset</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Kolom Kanan: Ringkasan Finansial & Validasi Posting (Sticky Panel) -->
+            <div>
+              <div class="summary-panel-card">
+                <div class="summary-heading">
+                  <span>Keseimbangan Finansial</span>
+                  <span style="font-size: 11px; font-weight: normal; color: var(--secondary-text);">Mata Uang: IDR</span>
+                </div>
+
+                <!-- Indikator Keseimbangan Realtime -->
+                <div id="balance-status-block" class="balance-status-block unbalanced">
+                  <span id="balance-badge" class="balance-status-badge unbalanced">TIDAK SEIMBANG</span>
+                  <div style="font-size: 11px; color: var(--secondary-text); margin-bottom: 12px;" id="balance-status-hint">
+                    Tombol posting terkunci sampai selisih bernilai Rp 0.
+                  </div>
+
+                  <div class="summary-row">
+                    <span class="summary-row-label">Total Debit:</span>
+                    <span class="summary-row-val tabular" id="display-total-debit">Rp 0</span>
+                  </div>
+                  <div class="summary-row">
+                    <span class="summary-row-label">Total Kredit:</span>
+                    <span class="summary-row-val tabular" id="display-total-credit">Rp 0</span>
+                  </div>
+                  <div class="summary-row" style="border-top: 1px dashed var(--border); padding-top: 8px; margin-top: 4px;">
+                    <span class="summary-row-label" style="font-weight: 600;">Selisih:</span>
+                    <span class="summary-row-val tabular" id="display-diff" style="font-size: 14px;">Rp 0</span>
+                  </div>
+                </div>
+
+                <!-- Tombol Submit Utama -->
+                <button type="button" class="btn btn-primary" id="btn-submit-voucher" style="width: 100%; height: 42px;" disabled>
+                  Posting Voucher
+                </button>
+
+                <!-- Quick Presets -->
+                <div style="border-top: 1px solid var(--border); padding-top: 12px; margin-top: 4px;">
+                  <span style="font-size: 11px; font-weight: 600; color: var(--secondary-text); display: block; margin-bottom: 8px;">UJI CEPAT:</span>
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <button type="button" class="btn btn-secondary" id="btn-load-balanced" style="height: 32px; font-size: 11px; justify-content: flex-start;">
+                      &bull; Skenario Seimbang (Valid)
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="btn-load-unbalanced" style="height: 32px; font-size: 11px; color: var(--error); justify-content: flex-start;">
+                      &bull; Skenario Selisih (Uji Proteksi)
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- MODUL 2: BUKU BESAR -->
+        <!-- =================================================================== -->
+        <section id="page-journal" class="page-section">
+          <div class="card">
+            <div class="card-header">
+              <div style="display: flex; gap: 10px; align-items: center; width: 100%;">
+                <input type="text" id="journal-search-input" class="form-control" placeholder="Cari nomor bukti, akun, atau deskripsi..." style="max-width: 320px;">
+                <select id="filter-journal-status" class="form-control" style="width: 150px;">
+                  <option value="ALL">Semua Status</option>
+                  <option value="POSTED">Hanya POSTED</option>
+                  <option value="DRAFT">Hanya DRAFT</option>
+                </select>
+              </div>
+            </div>
+            <div class="card-body" style="padding: 0;">
+              <table class="enterprise-table">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th>No. Voucher</th>
+                    <th>Deskripsi</th>
+                    <th>Akun Finansial</th>
+                    <th style="text-align: right;">Debit (Rp)</th>
+                    <th style="text-align: right;">Kredit (Rp)</th>
+                    <th style="text-align: center;">Status</th>
+                    <th style="text-align: center;">Integritas</th>
+                  </tr>
+                </thead>
+                <tbody id="journal-tbody">
+                  <!-- Dimuat dinamis -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- MODUL 3: GUDANG & STOK -->
+        <!-- =================================================================== -->
+        <section id="page-inventory" class="page-section">
+          <!-- Alert Banner Trigger Exception -->
+          <div id="inventory-alert-callout" style="display: none;"></div>
+
+          <!-- KPI Summary Metrics -->
+          <div class="kpi-row-grid">
+            <div class="kpi-stat-card accent-navy">
+              <span class="kpi-stat-label">Total Jenis Barang</span>
+              <span class="kpi-stat-val tabular" id="inv-kpi-count">4 Item</span>
+              <span class="kpi-stat-desc">Katalog aktif di gudang</span>
+            </div>
+            <div class="kpi-stat-card accent-teal">
+              <span class="kpi-stat-label">Total Unit Fisik</span>
+              <span class="kpi-stat-val tabular" id="inv-kpi-units">145 Unit</span>
+              <span class="kpi-stat-desc">Tersedia untuk penjualan</span>
+            </div>
+            <div class="kpi-stat-card accent-amber">
+              <span class="kpi-stat-label">Valuasi Persediaan</span>
+              <span class="kpi-stat-val tabular" id="inv-kpi-valuation">Rp 5.320.000</span>
+              <span class="kpi-stat-desc">Berdasarkan harga perolehan</span>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 340px; gap: 20px; align-items: start;">
+            <!-- Tabel Master Barang -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Katalog Persediaan</h2>
+                <span class="badge badge-posted">Perpetual</span>
+              </div>
+              <div class="card-body" style="padding: 0;">
+                <table class="enterprise-table">
+                  <thead>
+                    <tr>
+                      <th>Kode</th>
+                      <th>Nama Barang</th>
+                      <th style="text-align: right;">Stok Fisik</th>
+                      <th style="text-align: right;">Harga Pokok (Rp)</th>
+                      <th style="text-align: right;">Total Nilai (Rp)</th>
+                    </tr>
+                  </thead>
+                  <tbody id="inventory-tbody">
+                    <!-- Dimuat dinamis -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Panel Mutasi Transaksi -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Mutasi Barang</h2>
+              </div>
+              <div class="card-body" style="display: flex; flex-direction: column; gap: 14px;">
+                <div class="form-group">
+                  <label class="form-label">Pilih Barang</label>
+                  <select id="inv-item-select" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Jenis Transaksi</label>
+                  <select id="inv-trx-type" class="form-control">
+                    <option value="SALE">Penjualan (SALE)</option>
+                    <option value="PURCHASE">Pembelian (PURCHASE)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Kuantitas (Unit)</label>
+                  <input type="number" id="inv-qty-input" class="form-control" value="10" min="1">
+                </div>
+
+                <button type="button" class="btn btn-primary" id="btn-execute-mutation" style="width: 100%;">
+                  Eksekusi Mutasi
+                </button>
+
+                <div style="border-top: 1px solid var(--border); padding-top: 12px; margin-top: 6px;">
+                  <span style="font-size: 11px; font-weight: 600; color: var(--secondary-text); display: block; margin-bottom: 8px;">UJI KONTROL:</span>
+                  <div style="display: flex; flex-direction: column; gap: 6px;">
+                    <button type="button" class="btn btn-secondary" id="btn-test-normal-sale" style="height: 32px; font-size: 11px; justify-content: flex-start;">
+                      &bull; Penjualan Normal (10 Unit)
+                    </button>
+                    <button type="button" class="btn btn-secondary" id="btn-test-negative-stock" style="height: 32px; font-size: 11px; color: var(--error); justify-content: flex-start;">
+                      &bull; Penjualan Melebihi Stok (45 Unit)
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =================================================================== -->
+        <!-- MODUL 4: JEJAK AUDIT -->
+        <!-- =================================================================== -->
+        <section id="page-audit" class="page-section">
+          <!-- Alert Banner Immutability -->
+          <div id="audit-alert-callout" style="display: none;"></div>
+
+          <div style="display: grid; grid-template-columns: 1fr 340px; gap: 20px; align-items: start;">
+            <!-- Tabel Log Audit -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Kronologi Aktivitas</h2>
+                <span class="badge badge-posted">Immutability Active</span>
+              </div>
+              <div class="card-body" style="padding: 0;">
+                <table class="enterprise-table">
+                  <thead>
+                    <tr>
+                      <th>Waktu</th>
+                      <th>Aksi</th>
+                      <th>Entitas</th>
+                      <th>No. Referensi</th>
+                      <th>Operator</th>
+                      <th>Checksum SHA-256</th>
+                    </tr>
+                  </thead>
+                  <tbody id="audit-table-tbody">
+                    <!-- Dimuat dinamis -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <!-- Laboratorium Pengujian Imutabilitas -->
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Pengujian Imutabilitas</h2>
+              </div>
+              <div class="card-body" style="display: flex; flex-direction: column; gap: 14px;">
+                <div class="alert-callout info" style="margin-bottom: 0;">
+                  Transaksi <strong>POSTED</strong> terkunci permanen. Koreksi wajib melalui <strong>Jurnal Pembalik (Storno)</strong>.
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Pilih Voucher Terposting</label>
+                  <select id="audit-target-voucher" class="form-control">
+                    <option value="BKK-2026/10/001">BKK-2026/10/001 (POSTED)</option>
+                    <option value="BKK-2026/10/002">BKK-2026/10/002 (POSTED)</option>
+                  </select>
+                </div>
+
+                <button type="button" class="btn btn-secondary" id="btn-test-tamper" style="width: 100%; color: var(--error); border-color: #F8B4B4;">
+                  Uji Coba Ubah / Hapus Data
+                </button>
+                <button type="button" class="btn btn-primary" id="btn-test-reversal" style="width: 100%;">
+                  Buat Jurnal Pembalik (Storno)
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
